@@ -10,6 +10,7 @@ namespace Algoritmos.Operaciones
     class Mergesort
     {
 
+
         int h=Form1.xd;
 
         int[] vectorA=Form1.vectorA;
