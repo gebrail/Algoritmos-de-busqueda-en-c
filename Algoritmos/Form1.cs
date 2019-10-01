@@ -20,8 +20,16 @@ namespace Algoritmos
         public static String tiempob = "";
         public static String tiempoc = "";
 
+        public static String tiempo_merge = "";
+        public static String tiempo_sort = "";
+        public static String tiempo_quik = "";
+
+
         public static int longitud;
         public static int[] vector;
+
+        public static string[] vector_general;
+        public static int[] vectorl;
 
 
         public static int xd;
@@ -174,6 +182,11 @@ namespace Algoritmos
 
             elementos_normales.Text = elementos;
 
+            btn_crear_asignar_03.Enabled = false;
+
+            btn_ordenar_03.Enabled = true;
+            
+
         }
 
         private void button3_Click_1(object sender, EventArgs e)
@@ -191,6 +204,147 @@ namespace Algoritmos
 
             elementos_ordenados.Text = elementos;
             txt_time_3.Text = tiempoc;
+        }
+
+        private void elementos_normales_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_3(object sender, EventArgs e)
+        {
+
+            xd = int.Parse(valor_numero_vector.Text);
+
+            ///transformar el vector de string a vector con valor numerico
+            ///
+            int[] temporal;
+
+            vector_general= new string[xd];
+
+            temporal =new int[xd];
+
+            for (int i = 0; i < xd; i++)
+            {
+                String tx_valorx = Interaction.InputBox(null, "Ingrese el valor para la posición: " + i);
+
+                vector_general[i] = tx_valorx;
+            }
+
+
+            //parsearlo en asicc
+
+            int valor_asiic;
+
+            for (int i = 0; i < xd; i++)
+            {
+
+                char x = char.Parse(vector_general[i]);
+
+                valor_asiic = System.Convert.ToInt32(x);
+
+                temporal[i] = valor_asiic;
+
+            }
+
+
+
+            String elementos = "";
+
+            for (int i = 0; i < xd; i++)
+            {
+                elementos += " " + vector_general[i];
+            }
+
+            elementos_vector_04.Text = elementos;
+
+
+            vectorl = temporal;
+
+            vectorA = new int[xd];
+
+            vector = new int[xd];
+
+            vectorA = temporal;
+
+            vector = temporal;
+
+            vectorB = new int[xd];
+
+            ///////SchellSorter            
+
+            String ordenados = "";
+
+            Operaciones.ShellSorter sh = new Operaciones.ShellSorter();
+
+            sh.Sort(vectorl);
+
+            for (int i = 0; i < xd; i++)
+            {
+
+                ordenados = ordenados + " " + System.Convert.ToChar(vectorl[i]);
+
+            }
+
+            txt_shell.Text = ordenados;
+            tiempo_shell.Text = tiempo;
+
+
+            ///////Mergesort   
+
+            Operaciones.Mergesort merg = new Operaciones.Mergesort();
+
+            merg.merge_sort(0, xd - 1, vectorA, vectorB);
+
+            String elementosx = "";
+
+            for (int i = 0; i < xd; i++)
+            {
+                elementosx = elementosx
+                + " " + System.Convert.ToChar(vectorA[i]);
+            }
+
+            txt_merge.Text = elementosx;
+            tiempo_mergesort.Text = tiempoc;
+
+
+            //QUIQSORT
+
+            Operaciones.Quiqsort quiq = new Operaciones.Quiqsort();
+
+            quiq.quicksortxd(vector, 0, xd - 1);
+
+            String elementos_ordenados = "";
+
+            for (int i = 0; i < xd; i++)
+            {
+                elementos_ordenados += 
+
+                " " + System.Convert.ToChar(vector[i]);
+            }
+
+            txt_quiq.Text = elementos_ordenados;
+
+            tiempo_quiq.Text = tiempob;
+
+
+
+
         }
     }
 }
